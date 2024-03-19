@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.product_detail.ProductDetailFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/dimen_margin_large"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/dimen_margin_xlarge"
+                android:contentDescription="@string/txt_to_back"
+                android:src="@drawable/ic_back_arrow" />
+
+            <!--Title & Brand -->
+            <LinearLayout
+                android:id="@+id/llTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/dimen_margin_large"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtTitleModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_margin_medium"
+                    android:textColor="#323232"
+                    android:textSize="@dimen/font_size_xlarge"
+                    tools:text="ProArt StudioBook" />
+
+                <TextView
+                    android:id="@+id/txtTitleBrandModel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#323232"
+                    android:textSize="@dimen/font_size_small"
+                    tools:text="Marca: Asus | Modelo: W700G3T" />
+            </LinearLayout>
+
+            <!--ImageProduct-->
+            <LinearLayout
+                android:id="@+id/llProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_margin_medium"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgProduct"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/txt_image_product"
+                    tools:background="@drawable/portatil" />
+
+            </LinearLayout>
+
+
+            <!--Tabs-->
+            <LinearLayout
+                android:id="@+id/llTabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_margin_medium"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTabTitleOverview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lato_black"
+                    android:textColor="#323232"
+                    android:text="Descripción" />
+
+
+                <TextView
+                    android:id="@+id/txtTabTitleSpecifications"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lato_black"
+                    android:gravity="center"
+                    android:textColor="#323232"
+                    android:text="Especificaciones" />
+
+                <TextView
+                    android:id="@+id/txtTabTitleReviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lato_black"
+                    android:gravity="end"
+                    android:textColor="#323232"
+                    android:text="Comentarios" />
+
+            </LinearLayout>
+
+
+            <!-- Tabs Description-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/dimen_margin_large"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Texto de descripción " />
+
+                <TextView
+                    android:id="@+id/txtSpecifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:text="Texto de especificaciones" />
+
+
+                <TextView
+                    android:id="@+id/txtReviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:text="Texto de comentarios" />
+
+
+            </LinearLayout>
+
+
+            <!--Price & Add to Cart-->
+            <LinearLayout
+                android:id="@+id/llPriceCart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_margin_large"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:textSize="@dimen/font_size_small"
+                        android:text="Precio:" />
+
+                    <TextView
+                        android:id="@+id/txtPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:fontFamily="@font/lato_black"
+                        android:textColor="#323232"
+                        android:textSize="@dimen/font_size_xlarge"
+                        tools:text="S/40,000" />
+
+
+                </LinearLayout>
+
+                <!-- Botón agregar al carrito-->
+                <LinearLayout
+                    android:id="@+id/llAddToCart"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_login"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen_padding_medium"
+                    android:pointerIcon="arrow">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/txt_button_cart"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_medium" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dimen_margin_medium"
+                        android:contentDescription="@string/txt_button_cart"
+                        android:src="@drawable/ic_cart"
+                        app:tint="@color/white" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

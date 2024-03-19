@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1024740545058",
+    "project_id": "importaciones-dominguez",
+    "storage_bucket": "importaciones-dominguez.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024740545058:android:c30a674c0f00bfe3eeb07b",
+        "android_client_info": {
+          "package_name": "com.store.importacionesdominguez"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBalLcunVgWM5-NABVbxOqVp0hnu3wXX8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

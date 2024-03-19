@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">ImportacionesDominguez</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_product_detail">Product Detail Fragment</string>
+    <string name="menu_shopping_cart">Shopping Cart Fragment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="wrap_content">wrap_content</string>
+
+    <!-- Bottom Menu -->
+    <string name="action_home">Inicio</string>
+    <string name="action_user">Perfil</string>
+    <string name="action_favorite">Favoritos</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_cart">Carrito</string>
+    <string name="action_profile">Mi cuenta</string>
+    <string name="logo_title">Logo</string>
+    <string name="txt_input_search">Buscar</string>
+    <string name="txt_image_banner">Image Banner</string>
+    <string name="txt_image_product">Image Product</string>
+    <string name="txt_login">¡Hola! \nInicia Sesión</string>
+    <string name="txt_tilEmail">Ingresa tu correo electrónico</string>
+    <string name="txt_tilPassword">Ingresa tu contraseña</string>
+    <string name="txt_lbl_forgotPassword">¿Haz olvidado tu contraseña?</string>
+    <string name="btn_txt_login">Iniciar</string>
+    <string name="txt_lbl_email">Correo electrónico</string>
+    <string name="txt_lbl_password">Contraseña</string>
+    <string name="txt_btn_register">Registrarme</string>
+    <string name="txt_not_account">¿Aún no tienes cuenta?</string>
+    <string name="txt_appbar_register">Regístrate</string>
+    <string name="txt_to_back">Retroceso</string>
+    <string name="info_register">Ingresa tus datos personales y disfruta de una experiencia de compra más rápida.</string>
+    <string name="txt_lbl_name">Nombre</string>
+    <string name="txt_tilName">Ingresa tu nombre</string>
+    <string name="txt_lbl_lastName">Apellidos</string>
+    <string name="txt_tilLastNames">Ingresa tu apellido</string>
+    <string name="txt_lbl_address">Dirección</string>
+    <string name="txt_tilAddress">Ingresa tu dirección</string>
+    <string name="txt_lbl_phone">Celular</string>
+    <string name="txt_tilPhone">Ingresa tu número de celular</string>
+    <string name="txt_terms_privacy">Aceptop los término y condiciones de Importaciones Dominguez y autorizo la politica de privacidad.</string>
+    <string name="txt_register">Regístrate</string>
+    <string name="txt_button_cart">Agregar</string>
+    <string name="txt_ic_hamburger">menu_hamburger</string>
+    <string name="txt_required">Campo Requerido</string>
+    <string name="txt_required_field">Campo Requerido</string>
+    <string name="txt_myProfile">Mi perfil</string>
+    <string name="txt_menu_logout">Cerrar Sesión</string>
+    <string name="txt_menu_compras">Mis compras</string>
+    <string name="txt_menu_datos_personales">Datos Personales</string>
+    <string name="txt_menu_payment">Medios de Pago</string>
+    <string name="txt_menu_configurar_cuenta">Configurar cuenta</string>
+</resources>
