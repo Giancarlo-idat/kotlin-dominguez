@@ -17,7 +17,7 @@ import com.store.importacionesdominguez.data.model.ProductModel
 import com.store.importacionesdominguez.data.providers.ProductsProvider
 import com.store.importacionesdominguez.databinding.FragmentHomeBinding
 import com.store.importacionesdominguez.ui.home.adapter.BannerAdapter
-import com.store.importacionesdominguez.ui.home.adapter.ProductsAdapter
+import com.store.importacionesdominguez.ui.product.viewmodel.adapter.ProductsAdapter
 import kotlin.math.abs
 
 class HomeFragment : Fragment() {

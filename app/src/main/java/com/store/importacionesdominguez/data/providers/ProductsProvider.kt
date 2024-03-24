@@ -1,22 +1,37 @@
 package com.store.importacionesdominguez.data.providers
 
 import com.store.importacionesdominguez.data.model.ProductModel
+import java.math.BigDecimal
 
 class ProductsProvider {
 
     companion object {
 
         val productList = listOf(
-            ProductModel("1","Laptop Asus Intel Core I3 8GB 256GB SSD Vivobook GO 15 12° Generación", "S/ 3,999", "https://falabella.scene7.com/is/image/FalabellaPE/883096366_1?wid=340&hei=340&qlt=70&fmt=webp", "Laptop Asus", "Laptop", "Asus"),
-            ProductModel("2","Laptop Asus Intel Core I3 8GB 256GB SSD nVivobook GO 15 12° Generación", "S/ 3,999", "https://falabella.scene7.com/is/image/FalabellaPE/882926982_1?wid=340&hei=340&qlt=70&fmt=webp", "Laptop HP", "Laptop", "HP"),
-            ProductModel("3","Laptop Asus Intel Core I3 8GB 256GB SSD Vivobook GO 15 12° Generación", "S/ 3,999", "https://falabella.scene7.com/is/image/FalabellaPE/882959594_1?wid=340&hei=340&qlt=70&fmt=webp", "Laptop Lenovo", "Laptop", "Lenovo"),
-            ProductModel("4","Laptop Asus Intel Core I3 8GB 256GB SSD Vivobook GO 15 12° Generación", "S/ 3,999", "https://s7d2.scene7.com/is/image/TottusPE/43186407_1?wid=340&hei=340&qlt=70&fmt=webp", "Laptop Dell", "Laptop", "Dell"),
-            ProductModel("5","Laptop Asus Intel Core I3 8GB 256GB SSD Vivobook GO 15 12° Generación", "S/ 3,999", "https://falabella.scene7.com/is/image/FalabellaPE/883085764_1?wid=340&hei=340&qlt=70&fmt=webp", "Laptop Acer", "Laptop", "Acer"),
-            ProductModel("6","Laptop Asus Intel Core I3 8GB 256GB SSD Vivobook GO 15 12° Generación", "S/ 3,999", "https://falabella.scene7.com/is/image/FalabellaPE/883099615_1?wid=340&hei=340&qlt=70&fmt=webp", "Laptop Samsung", "Laptop", "Samsung"),
-            ProductModel("7","Laptop Asus Intel Core I3 8GB 256GB SSD Vivobook GO 15 12° Generación", "S/ 3,999", "https://falabella.scene7.com/is/image/FalabellaPE/883024537_1?wid=340&hei=340&qlt=70&fmt=webp", "Laptop Apple", "Laptop", "Apple"),
-            ProductModel("8","Laptop Asus Intel Core I3 8GB 256GB SSD Vivobook GO 15 12° Generación", "S/ 3,999", "https://falabella.scene7.com/is/image/FalabellaPE/882958605_2?wid=340&hei=340&qlt=70&fmt=webp", "Laptop Xiaomi", "Laptop", "Xiaomi"),
-            ProductModel("9","Laptop Asus Intel Core I3 8GB 256GB SSD Vivobook GO 15 12° Generación", "S/ 3,999", "https://falabella.scene7.com/is/image/FalabellaPE/883024529_1?wid=340&hei=340&qlt=70&fmt=webp", "Laptop Huawei", "Laptop", "Huawei"),
-
+            ProductModel(
+                id = "1",
+                modelo = "Laptop Lenovo",
+                descripcion = "Laptop Lenovo 15.6\" Ideapad 3 4GB RAM 1TB HDD",
+                precio = BigDecimal(999.99),
+                marca = "Lenovo",
+                stock = 10,
+                imagen = "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-spacegray-select-202011?wid=892&hei=820&&qlt=80&.v=1603406905000",
+                categoria = CategoriaProvider.categoriaList[0],
+                fichaTecnica = mapOf(
+                    "Procesador" to "Intel Core i3",
+                    "Memoria RAM" to "4GB",
+                    "Almacenamiento" to "1TB HDD",
+                    "Sistema Operativo" to "Windows 10",
+                    "Pantalla" to "15.6\"",
+                    "Resolución" to "1366 x 768",
+                    "Tarjeta Gráfica" to "Intel UHD Graphics 620",
+                    "Puertos" to "2 x USB 3.0, 1 x USB 2.0, 1 x HDMI, 1 x RJ-45, 1 x Jack 3.5mm",
+                    "Conectividad" to "WiFi 802.11ac, Bluetooth 4.1",
+                    "Batería" to "2 celdas 35Wh",
+                    "Dimensiones" to "36.22 x 25.15 x 1.99 cm",
+                    "Peso" to "1.85 kg",
+                ),
+            ),
         )
 
         fun getProductById(productId: String): ProductModel? {

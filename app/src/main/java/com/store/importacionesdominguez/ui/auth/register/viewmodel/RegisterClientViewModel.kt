@@ -1,10 +1,16 @@
 package com.store.importacionesdominguez.ui.auth.register.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.store.importacionesdominguez.data.model.ClienteModel
+import com.store.importacionesdominguez.data.model.Result
 import com.store.importacionesdominguez.data.repository.ClienteRepository
 import com.store.importacionesdominguez.utils.validation.EmpleadoValidator
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,6 +19,9 @@ class RegisterClientViewModel
     private val clienteRepository: ClienteRepository,
     private val empleadoValidator: EmpleadoValidator
 ) : ViewModel() {
+
+    private val _registroExitoso = MutableLiveData<Boolean>()
+    val registroExitoso: LiveData<Boolean> get() = _registroExitoso
 
     suspend fun getClientes() {
         return try {
@@ -33,13 +42,19 @@ class RegisterClientViewModel
         }
     }
 
-    suspend fun createCliente(cliente: ClienteModel) {
-        return try {
-            empleadoValidator.validarEmpleado(cliente)
-            val newCliente = clienteRepository.createCliente(cliente)
-            println("Cliente: $newCliente")
-        } catch (e: Exception) {
-            println("Error: $e")
+    fun createCliente(cliente: ClienteModel) {
+        viewModelScope.launch {
+            when (val result = clienteRepository.createCliente(cliente)) {
+                is Result.Success -> {
+                    _registroExitoso.value = true
+                    println("Cliente creado: $cliente")
+                }
+
+                is Result.Error -> {
+                    _registroExitoso.value = false
+                    println("Error: ${result.message}")
+                }
+            }
         }
     }
 

@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
+import com.store.importacionesdominguez.R
 import com.store.importacionesdominguez.data.model.AuthenticationState
 import com.store.importacionesdominguez.data.model.Result
 import com.store.importacionesdominguez.data.model.SignInModel
@@ -28,28 +30,30 @@ class LoginViewModel
     private val _isAuthenticated = MutableLiveData<Boolean>()
     // val isAuthenticated: LiveData<Boolean> = _isAuthenticated
 
-
-
-
     fun iniciarSesion(singIn: SignInModel, context: Context) {
         _authenticationState.value = AuthenticationState.Loading
         viewModelScope.launch {
-            when (val result = repository.iniciarSesion(singIn)) {
+            val result = repository.iniciarSesion(singIn)
+            when (result) {
                 is Result.Success -> {
                     val token = result.data.token
                     val email = result.data.email
-                    println("email $email")
                     _authenticationState.value = AuthenticationState.Authenticated
-                    // Guardar token en SharedPreferences
-                    SharedPreferences.saveToken(context, token)
-                    SharedPreferences.saveTokenAndEmail(context, token, email)
-                    _isAuthenticated.value = true
-
-
+                    if (token != null) {
+                        // Guardar token en SharedPreferences solo si no es nulo
+                        SharedPreferences.saveToken(context, token)
+                        SharedPreferences.saveTokenAndEmail(context, token, email)
+                        _isAuthenticated.value = true
+                    } else {
+                        _authenticationState.value = AuthenticationState.Error("Error de autenticación")
+                    }
                 }
 
                 is Result.Error -> {
+                    println("Result  $result")
+
                     val error = result.message
+
                     println("Error: $error")
                     _authenticationState.value = AuthenticationState.Error("Error de autenticación")
                     // Mostrar mensaje de error
@@ -57,9 +61,14 @@ class LoginViewModel
                     // Actualizar estado de autenticación a false
                     _isAuthenticated.value = false
                 }
-
             }
         }
     }
 
+    fun cerrarSesion(context: Context, navController: NavController) {
+        _authenticationState.value = AuthenticationState.Unauthenticated
+        SharedPreferences.clearAuthenticationData(context)
+        _isAuthenticated.value = false
+        navController.navigate(R.id.homeFragment)
+    }
 }

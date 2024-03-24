@@ -37,15 +37,15 @@ class EmpleadoValidator @Inject constructor(
     }
 
     private fun validarCamposValidos(cliente: ClienteModel) {
-        if (Validations.isValidNames(cliente.nombres))
+        if (!Validations.isValidNames(cliente.nombres))
             throw Exceptions.ValidarNombreApellidosException("El nombre no puede contener números")
-        if (Validations.isValidNames(cliente.apellidos))
+        if (!Validations.isValidNames(cliente.apellidos))
             throw Exceptions.ValidarNombreApellidosException("El apellido no puede contener números")
-        if (Validations.isValidEmail(cliente.email))
+        if (!Validations.isValidEmail(cliente.email))
             throw Exceptions.EmailInvalidoException("El email debe tener un formato válido")
         if (Validations.isValidTelephone(cliente.telefono))
             throw Exceptions.ValidarTelefonoException("El teléfono debe tener 9 dígitos")
-        if (Validations.isValidPassword(cliente.password))
+        if (!Validations.isValidPassword(cliente.password))
             throw Exceptions.ValidarPasswordException("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número")
     }
 

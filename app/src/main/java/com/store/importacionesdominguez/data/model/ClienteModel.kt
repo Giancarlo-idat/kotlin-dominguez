@@ -1,7 +1,7 @@
 package com.store.importacionesdominguez.data.model
 
 data class ClienteModel (
-    val id: String,
+    val id: String?,
     val nombres: String,
     val apellidos: String,
     val direccion: String,

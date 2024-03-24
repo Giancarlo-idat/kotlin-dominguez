@@ -5,18 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.store.importacionesdominguez.MainActivity
-import com.store.importacionesdominguez.R
 import com.store.importacionesdominguez.databinding.FragmentMenuClientBinding
+import com.store.importacionesdominguez.ui.auth.login.viewmodel.LoginViewModel
 import com.store.importacionesdominguez.utils.preferences.SharedPreferences
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MenuClientFragment : Fragment() {
 
     private var _binding: FragmentMenuClientBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
+    private val viewModel: LoginViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,15 +52,12 @@ class MenuClientFragment : Fragment() {
 
     private fun onLogout() {
         binding.llLogout.setOnClickListener {
-            SharedPreferences.clearAuthenticationData(requireContext())
+           viewModel.cerrarSesion(requireContext(), findNavController())
             (requireActivity() as MainActivity).updateMenuVisibility(false)
-            onHome()
         }
+
     }
 
-    private fun onHome() {
-        navController.navigate(R.id.homeFragment)
-    }
 
     override fun onDestroy() {
         super.onDestroy()

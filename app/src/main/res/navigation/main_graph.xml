@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
-        android:name="com.store.importacionesdominguez.ui.product_detail.ProductDetailFragment"
+        android:name="com.store.importacionesdominguez.ui.product.view.ProductDetailFragment"
         android:label="fragment_product_detail"
         tools:layout="@layout/fragment_product_detail">
 
@@ -93,14 +93,44 @@
         <argument
             android:name="productId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_productDescriptionFragment"
+            app:destination="@id/productDescriptionFragment" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_productSpecificationsFragment"
+            app:destination="@id/productSpecificationsFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuClientFragment"
         android:name="com.store.importacionesdominguez.ui.client.view.MenuClientFragment"
         android:label="fragment_menu_client"
-        tools:layout="@layout/fragment_menu_client" >
+        tools:layout="@layout/fragment_menu_client">
         <action
             android:id="@+id/action_menuClientFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDescriptionFragment"
+        android:name="com.store.importacionesdominguez.ui.product.view.ProductDescriptionFragment"
+        android:label="fragment_product_description"
+        tools:layout="@layout/fragment_product_description">
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productDescriptionFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productSpecificationsFragment"
+        android:name="com.store.importacionesdominguez.ui.product.view.ProductSpecificationsFragment"
+        android:label="fragment_product_specifications"
+        tools:layout="@layout/fragment_product_specifications">
+        <argument
+            android:name="specification"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productSpecificationsFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
 </navigation>

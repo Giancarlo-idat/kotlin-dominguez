@@ -54,7 +54,7 @@ object SharedPreferences {
     }
 
     // Obtiene el token guardado en SharedPreferences usando PreferenceHelper
-    fun getToken(context: Context): String? {
+    fun getToken(context: Context): String {
         return defaultPrefs(context)[TOKEN_KEY]
     }
 
@@ -78,7 +78,7 @@ object SharedPreferences {
         defaultPrefs(context)[KEY_USER_EMAIL] = email
     }
 
-    fun getUserEmail(context: Context): String? {
+    fun getUserEmail(context: Context): String {
         return defaultPrefs(context)[KEY_USER_EMAIL]
     }
 }

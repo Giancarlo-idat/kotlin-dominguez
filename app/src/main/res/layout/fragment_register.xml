@@ -97,6 +97,7 @@
                 android:layout_marginTop="32dp"
                 android:orientation="vertical">
 
+                <!-- Label Text Name-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,6 +105,7 @@
                     android:textColor="@color/color_secondary"
                     android:textSize="@dimen/font_size_small" />
 
+                <!-- Input Name -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editTextName"
                     android:layout_width="match_parent"
@@ -128,9 +130,21 @@
                         android:paddingStart="@dimen/dimen_padding_medium"
                         android:paddingEnd="0dp"
                         android:textColor="@color/color_secondary"
-                        android:textSize="@dimen/font_size_medium" />
+                        android:textSize="@dimen/font_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Error Name -->
+                <TextView
+                    android:id="@+id/txtErrorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dimen_margin_medium"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/font_size_small"
+                    android:visibility="gone" />
+
+                <!-- Label Text Last Name -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,6 +153,7 @@
                     android:textColor="@color/color_secondary"
                     android:textSize="@dimen/font_size_small" />
 
+                <!-- Input Last Name -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editTextLastName"
                     android:layout_width="match_parent"
@@ -163,44 +178,21 @@
                         android:paddingStart="@dimen/dimen_padding_medium"
                         android:paddingEnd="0dp"
                         android:textColor="@color/color_secondary"
-                        android:textSize="@dimen/font_size_medium" />
+                        android:textSize="@dimen/font_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Error Last Name -->
                 <TextView
+                    android:id="@+id/txtErrorLastName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_margin_large"
-                    android:text="@string/txt_lbl_email"
-                    android:textColor="#333333"
-                    android:textSize="@dimen/font_size_small" />
+                    android:layout_marginVertical="@dimen/dimen_margin_medium"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/font_size_small"
+                    android:visibility="gone" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/editTextEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_padding_medium"
-                    android:autofillHints="no"
-                    android:background="@android:color/transparent"
-                    android:ems="8"
-                    android:textColor="#333333"
-                    android:textColorHint="#333333"
-                    android:textSize="@dimen/font_size_medium"
-                    tools:ignore="TextFields">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tiedTxtEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/txt_tilEmail"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="1"
-                        android:paddingStart="@dimen/dimen_padding_medium"
-                        android:paddingEnd="0dp"
-                        android:textColor="#333333"
-                        android:textSize="@dimen/font_size_medium" />
-                </com.google.android.material.textfield.TextInputLayout>
-
+                <!-- Label Text Address -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -209,6 +201,7 @@
                     android:textColor="@color/color_secondary"
                     android:textSize="@dimen/font_size_small" />
 
+                <!-- Input Address -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editTextAddress"
                     android:layout_width="match_parent"
@@ -233,9 +226,21 @@
                         android:paddingStart="@dimen/dimen_padding_medium"
                         android:paddingEnd="0dp"
                         android:textColor="@color/color_secondary"
-                        android:textSize="@dimen/font_size_medium" />
+                        android:textSize="@dimen/font_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Error Address -->
+                <TextView
+                    android:id="@+id/txtErrorAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dimen_margin_medium"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/font_size_small"
+                    android:visibility="gone" />
+
+                <!-- Label Text Phone -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -244,6 +249,7 @@
                     android:textColor="@color/color_secondary"
                     android:textSize="@dimen/font_size_small" />
 
+                <!-- Input Phone -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editTextPhone"
                     android:layout_width="match_parent"
@@ -268,9 +274,173 @@
                         android:paddingStart="@dimen/dimen_padding_medium"
                         android:paddingEnd="0dp"
                         android:textColor="@color/color_secondary"
-                        android:textSize="@dimen/font_size_medium" />
+                        android:textSize="@dimen/font_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Error Phone -->
+                <TextView
+                    android:id="@+id/txtErrorTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dimen_margin_medium"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/font_size_small"
+                    android:visibility="gone" />
+
+                <!-- Label Tipo Sexo-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin_large"
+                    android:text="@string/txt_lbl_sexo"
+                    android:textColor="@color/color_secondary"
+                    android:textSize="@dimen/font_size_small" />
+
+                <!-- Spinner Sexo -->
+                <Spinner
+                    android:id="@+id/spinnerSexo"
+                    android:layout_width="match_parent"
+                    android:layout_marginVertical="@dimen/dimen_margin_small"
+                    android:layout_height="wrap_content" />
+
+                <!-- Error Sexo -->
+                <TextView
+                    android:id="@+id/txtErrorSexo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dimen_margin_medium"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/font_size_small"
+                    android:visibility="gone" />
+
+                <!-- Label Tipo Documento-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin_large"
+                    android:text="@string/txt_lbl_documento"
+                    android:textColor="@color/color_secondary"
+                    android:textSize="@dimen/font_size_small" />
+
+                <!-- Spinner Tipo Documento -->
+                <Spinner
+                    android:id="@+id/spinnerTipoDocumento"
+                    android:layout_width="match_parent"
+                    android:layout_marginVertical="@dimen/dimen_margin_small"
+                    android:layout_height="wrap_content" />
+
+                <!-- Error Tipo Documento -->
+                <TextView
+                    android:id="@+id/txtErrorTipoDocumento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dimen_margin_medium"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/font_size_small"
+                    android:visibility="gone" />
+
+                <!-- Label N° Documento-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin_large"
+                    android:text="@string/txt_lbl_numero_documento"
+                    android:textColor="@color/color_secondary"
+                    android:textSize="@dimen/font_size_small" />
+
+                <!-- Input Email -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editTextNumeroDocumento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_padding_medium"
+                    android:autofillHints="no"
+                    android:background="@android:color/transparent"
+                    android:ems="8"
+                    android:textColor="#333333"
+                    android:textColorHint="#333333"
+                    android:textSize="@dimen/font_size_medium"
+                    tools:ignore="TextFields">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedTxtNumeroDocumento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txt_tilNumeroDocumento"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/dimen_padding_medium"
+                        android:paddingEnd="0dp"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/font_size_small" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!-- Error N° Documento -->
+                <TextView
+                    android:id="@+id/txtErrorNumeroDocumento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dimen_margin_medium"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/font_size_small"
+                    android:visibility="gone" />
+
+
+                <!-- Label Text Email -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin_large"
+                    android:text="@string/txt_lbl_email"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/font_size_small" />
+
+                <!-- Input Email -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_padding_medium"
+                    android:autofillHints="no"
+                    android:background="@android:color/transparent"
+                    android:ems="8"
+                    android:textColor="#333333"
+                    android:textColorHint="#333333"
+                    android:textSize="@dimen/font_size_medium"
+                    tools:ignore="TextFields">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedTxtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/txt_tilEmail"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/dimen_padding_medium"
+                        android:paddingEnd="0dp"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/font_size_small" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Error Email -->
+                <TextView
+                    android:id="@+id/txtErrorEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dimen_margin_medium"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/font_size_small"
+                    android:visibility="gone" />
+
+                <!-- Label Text Password -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -279,6 +449,7 @@
                     android:textColor="#333333"
                     android:textSize="@dimen/font_size_small" />
 
+                <!-- Input Password -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editTextPassword"
                     android:layout_width="match_parent"
@@ -305,8 +476,20 @@
                         android:paddingStart="@dimen/dimen_padding_medium"
                         android:paddingEnd="0dp"
                         android:textColor="#333333"
-                        android:textSize="@dimen/font_size_medium" />
+                        android:textSize="@dimen/font_size_small" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Error Password -->
+                <TextView
+                    android:id="@+id/txtErrorPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dimen_margin_medium"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/font_size_small"
+                    android:visibility="gone" />
+
 
             </LinearLayout>
 

@@ -1,11 +1,11 @@
-package com.store.importacionesdominguez.ui.home.adapter
+package com.store.importacionesdominguez.ui.product.viewmodel.adapter
 
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.store.importacionesdominguez.data.model.ProductModel
 import com.store.importacionesdominguez.databinding.ItemProductsBinding
+import java.math.RoundingMode
 
 class ProductsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -14,16 +14,16 @@ class ProductsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun render(products: ProductModel, onClickListener: (String) -> Unit) {
 
         Glide.with(binding.imageViewProduct.context)
-            .load(products.image)
+            .load(products.imagen)
             .into(binding.imageViewProduct)
 
 
         binding.txtProductBrand.text = products.marca
-        binding.txtProductModel.text = products.model
-        binding.txtProductPrice.text = products.price.toString()
+        binding.txtProductModel.text = products.modelo
+        binding.txtProductPrice.text = "S/ " + products.precio.setScale(2, RoundingMode.HALF_EVEN).toString()
 
         binding.root.setOnClickListener {
-            onClickListener(products.id)
+            products.id?.let { id -> onClickListener(id) }
         }
     }
 }

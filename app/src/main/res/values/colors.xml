@@ -12,4 +12,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="color_secondary">#333333</color>
     <color name="primary">#EF3174</color>
+    <color name="error">#FF0000</color>
 </resources>

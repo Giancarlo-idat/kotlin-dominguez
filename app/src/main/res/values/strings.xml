@@ -57,4 +57,16 @@
     <string name="txt_menu_datos_personales">Datos Personales</string>
     <string name="txt_menu_payment">Medios de Pago</string>
     <string name="txt_menu_configurar_cuenta">Configurar cuenta</string>
+    <string name="txt_errorname_label">El nombre no puede ser vacío</string>
+    <string name="txt_errorlastname_label">El apellido no puede ser vacío</string>
+    <string name="txt_erroremail_label">El email no puede ser vacío</string>
+    <string name="txt_errorpassword_label">La contraseña no puede ser vacía</string>
+    <string name="txt_errortelefono_label">El teléfono no puede ser vacío</string>
+    <string name="txt_erroraddress_label">La dirección no puede ser vacía</string>
+    <string name="txt_lbl_sexo">Tipo Sexo</string>
+    <string name="txt_lbl_documento">Tipo Documento</string>
+    <string name="txt_lbl_numero_documento">N° Documento</string>
+    <string name="txt_tilNumeroDocumento">Ingresa tu número documento</string>
+    <string name="txt_errornumero_documento_label">El número de documento no puede ser vacio</string>
+    <string name="txt_title_checkout_cart">Shopping Bag</string>
 </resources>

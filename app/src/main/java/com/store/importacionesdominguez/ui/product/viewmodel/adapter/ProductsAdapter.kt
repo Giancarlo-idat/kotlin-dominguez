@@ -1,10 +1,11 @@
-package com.store.importacionesdominguez.ui.home.adapter
+package com.store.importacionesdominguez.ui.product.viewmodel.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.store.importacionesdominguez.R
 import com.store.importacionesdominguez.data.model.ProductModel
+import com.store.importacionesdominguez.ui.product.viewmodel.adapter.ProductsViewHolder
 
 class ProductsAdapter(
     private val productsList: List<ProductModel>,
