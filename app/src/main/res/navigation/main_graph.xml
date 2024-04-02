@@ -35,12 +35,15 @@
 
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.store.importacionesdominguez.ui.cart.CartFragment"
+        android:name="com.store.importacionesdominguez.ui.cart.view.CartFragment"
         android:label="@string/menu_shopping_cart"
         tools:layout="@layout/fragment_cart">
         <action
             android:id="@+id/action_cartFragment_to_nav_home"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
 
     <fragment
@@ -99,6 +102,9 @@
         <action
             android:id="@+id/action_productDetailFragment_to_productSpecificationsFragment"
             app:destination="@id/productSpecificationsFragment" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuClientFragment"
@@ -120,6 +126,9 @@
         <action
             android:id="@+id/action_productDescriptionFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_productDescriptionFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/productSpecificationsFragment"
@@ -132,5 +141,8 @@
         <action
             android:id="@+id/action_productSpecificationsFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_productSpecificationsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

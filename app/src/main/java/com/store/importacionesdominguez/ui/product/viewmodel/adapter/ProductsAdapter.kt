@@ -5,18 +5,27 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.store.importacionesdominguez.R
 import com.store.importacionesdominguez.data.model.ProductModel
-import com.store.importacionesdominguez.ui.product.viewmodel.adapter.ProductsViewHolder
+import com.store.importacionesdominguez.ui.product.viewmodel.ProductsViewHolder
+import com.store.importacionesdominguez.databinding.ItemProductsBinding
 
 class ProductsAdapter(
-    private val productsList: List<ProductModel>,
     private val onClickListener: (String) -> Unit
 ) : RecyclerView.Adapter<ProductsViewHolder>() {
+
+    private var productsList: MutableList<ProductModel> = mutableListOf()
+
+    fun setData(products: List<ProductModel>) {
+        productsList.clear()
+        productsList.addAll(products)
+        notifyDataSetChanged()
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
 
         val layoutInflater = LayoutInflater.from(parent.context)
-        return ProductsViewHolder(layoutInflater.inflate(R.layout.item_products, parent, false))
+        val binding = ItemProductsBinding.inflate(layoutInflater, parent, false)
+        return ProductsViewHolder(binding)
 
     }
 
@@ -25,7 +34,7 @@ class ProductsAdapter(
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
         val products: ProductModel = productsList[position]
-        holder.render(products, onClickListener)
+        holder.bind(products, onClickListener)
     }
 
 

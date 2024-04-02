@@ -5,7 +5,10 @@ import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
+import androidx.fragment.app.viewModels
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,13 +16,15 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.store.importacionesdominguez.R
-import com.store.importacionesdominguez.data.model.ProductModel
-import com.store.importacionesdominguez.data.providers.ProductsProvider
 import com.store.importacionesdominguez.databinding.FragmentHomeBinding
 import com.store.importacionesdominguez.ui.home.adapter.BannerAdapter
+import com.store.importacionesdominguez.ui.product.viewmodel.ProductsViewModel
 import com.store.importacionesdominguez.ui.product.viewmodel.adapter.ProductsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -29,6 +34,11 @@ class HomeFragment : Fragment() {
     private lateinit var handler: Handler
     private lateinit var imageList: ArrayList<Int>
     private lateinit var adapter: BannerAdapter
+
+    private val viewModelProducts: ProductsViewModel by viewModels()
+    private val productsAdapter = ProductsAdapter { productId ->
+        navigateToProductDetail(productId)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,15 +60,19 @@ class HomeFragment : Fragment() {
             }
         })
         initRecyclerView()
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        fetchProducts()
     }
 
     private fun initViewPager2() {
         viewPager2 = binding.viewPager2
         imageList = ArrayList()
         handler = Handler(Looper.myLooper()!!)
-        var image1 = R.drawable.asus
-        var image2 = R.drawable.banner
+        val image1 = R.drawable.asus
+        val image2 = R.drawable.banner
 
         imageList.add(image1)
         imageList.add(image2)
@@ -73,7 +87,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupTransformer() {
-        val transformer = CompositePageTransformer();
+        val transformer = CompositePageTransformer()
         transformer.addTransformer(MarginPageTransformer(40))
         transformer.addTransformer { page, position ->
             val r = 1 - abs(position)
@@ -89,23 +103,39 @@ class HomeFragment : Fragment() {
     private fun initRecyclerView() {
         val recyclerView = binding.recyclerViewProducts
         recyclerView.layoutManager = GridLayoutManager(context, 2)
-        val productsAdapter = ProductsAdapter(ProductsProvider.productList) { productId ->
-            navigateToProductDetail(productId)
-        }
         recyclerView.adapter = productsAdapter
     }
 
     private fun navigateToProductDetail(productId: String) {
-        val product = getProductById(productId)
-        product?.let {
+        val product = fetchProductById(productId)
+        product.let {
             val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(productId)
             findNavController().navigate(action)
         }
     }
 
-    private fun getProductById(productId: String): ProductModel? {
-        return ProductsProvider.productList.find { it.id == productId }
+    private fun fetchProducts() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModelProducts.productos.collect { productListResponse ->
+                if (productListResponse.isSuccessful) {
+                    val productList = productListResponse.body()
+                    productList?.let {
+                        productsAdapter.setData(it)
+                    }
+                } else {
+                    val errorMessage = productListResponse.errorBody()?.toString()
+                    // Manejar el error
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        viewModelProducts.getProducts()
     }
+
+    private fun fetchProductById(productId: String) {
+        viewModelProducts.getProductById(productId)
+    }
+
 
     override fun onPause() {
         super.onPause()

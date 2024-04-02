@@ -1,7 +1,9 @@
 package com.store.importacionesdominguez.di
 
 import com.store.importacionesdominguez.data.service.AuthService
+import com.store.importacionesdominguez.data.service.CategoriesService
 import com.store.importacionesdominguez.data.service.ClienteService
+import com.store.importacionesdominguez.data.service.ProductsService
 import com.store.importacionesdominguez.data.service.RolService
 import com.store.importacionesdominguez.data.service.TipoDocumentoIdentidadService
 import dagger.Module
@@ -38,4 +40,17 @@ object ServiceModule {
     fun provideRolService(retrofit: Retrofit): RolService {
         return retrofit.create(RolService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideCategoriaService(retrofit: Retrofit): CategoriesService {
+        return retrofit.create(CategoriesService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductService(retrofit: Retrofit): ProductsService {
+        return retrofit.create(ProductsService::class.java)
+    }
+
 }

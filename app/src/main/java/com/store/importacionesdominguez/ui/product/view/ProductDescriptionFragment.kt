@@ -5,9 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.navArgs
-import com.store.importacionesdominguez.data.model.ProductModel
-import com.store.importacionesdominguez.data.providers.ProductsProvider
 import com.store.importacionesdominguez.databinding.FragmentProductDescriptionBinding
 
 
@@ -31,7 +28,8 @@ class ProductDescriptionFragment : Fragment() {
         }
     }
 
-    fun setDescription(description: String) {
+
+    private fun setDescription(description: String) {
         binding.tvDescription.text = description
     }
 

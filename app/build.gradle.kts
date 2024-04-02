@@ -79,6 +79,9 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
 
+    // Jackson Dependecy
+    implementation ("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.13.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

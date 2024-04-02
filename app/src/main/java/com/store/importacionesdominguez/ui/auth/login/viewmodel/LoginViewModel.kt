@@ -49,6 +49,10 @@ class LoginViewModel
                     }
                 }
 
+                is Result.Loading -> {
+                    _authenticationState.value = AuthenticationState.Loading
+                }
+
                 is Result.Error -> {
                     println("Result  $result")
 

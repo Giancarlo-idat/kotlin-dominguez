@@ -1,6 +1,6 @@
 package com.store.importacionesdominguez.data.model
 
-import java.io.Serializable
+import com.fasterxml.jackson.databind.ObjectMapper
 import java.math.BigDecimal
 
 data class ProductModel(
@@ -13,4 +13,16 @@ data class ProductModel(
     val imagen: String,
     val categoria: CategoriaModel,
     val fichaTecnica: Map<String, Any>
-)
+) {
+    fun toJson(): String {
+        val objectMapper = ObjectMapper()
+        return objectMapper.writeValueAsString(this)
+    }
+
+    companion object {
+        fun fromJson(json: String): ProductModel {
+            val objectMapper = ObjectMapper()
+            return objectMapper.readValue(json, ProductModel::class.java)
+        }
+    }
+}

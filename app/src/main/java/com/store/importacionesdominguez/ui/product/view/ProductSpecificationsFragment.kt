@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.core.type.TypeReference
 import com.store.importacionesdominguez.databinding.FragmentProductSpecificationsBinding
 
 class ProductSpecificationsFragment : Fragment() {
@@ -12,24 +14,25 @@ class ProductSpecificationsFragment : Fragment() {
     private var _binding: FragmentProductSpecificationsBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentProductSpecificationsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val specification = arguments?.getString(ARG_SPECIFICATION)
-        binding.txtSpecificationProduct.text = specification
-    }
+        // Obtener la especificación técnica del Bundle
+        val jsonFichaTecnica = arguments?.getString("technicalSheet")
 
-    companion object {
-        const val ARG_SPECIFICATION = "arg_specification"
+        val fichaTecnica: Map<String, Any> = ObjectMapper().readValue(
+            jsonFichaTecnica,
+            object : TypeReference<Map<String, Any>>() {})
+
+        // Verificar si hay especificación técnica disponible
+        if (fichaTecnica.isNotEmpty()) {
+            // Mostrar el contenedor de la especificación técnica
+            binding.txtSpecificationProduct.text = fichaTecnica.toString()
+            binding.fragmentProductSpecifications.visibility = View.VISIBLE
+        } else {
+            // Ocultar el contenedor de la especificación técnica
+            binding.fragmentProductSpecifications.visibility = View.GONE
+        }
     }
 
     override fun onDestroy() {

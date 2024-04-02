@@ -97,14 +97,14 @@ class RegisterFragment : Fragment() {
             val apellidos = binding.tiedTxtLastName.text?.toString() ?: ""
             val email = binding.tiedTxtEmail.text?.toString() ?: ""
             val password = binding.tiedTxtPassword.text?.toString() ?: ""
-            val phone = binding.tiedTxtPhone.text?.toString() ?: ""
-            val address = binding.tiedTxtAddress.text?.toString() ?: ""
+            val telefono = binding.tiedTxtPhone.text?.toString() ?: ""
+            val direccion = binding.tiedTxtAddress.text?.toString() ?: ""
             val selectedSexo = binding.spinnerSexo.selectedItem?.toString() ?: ""
             val sexo = selectedSexo.let { TipoSexo.valueOf(it) }
             val numeroDocumento = binding.tiedTxtNumeroDocumento.text?.toString() ?: ""
             val selectedTipoDocumentoName = binding.spinnerTipoDocumento.selectedItem?.toString() ?: ""
 
-            val tipoDocumentoSeleccionado = tipoDocumentoViewModel.tiposDocumentos.value.find { documento ->
+            val tipoDocumento = tipoDocumentoViewModel.tiposDocumentos.value.find { documento ->
                 documento.nombre == selectedTipoDocumentoName
             }
 
@@ -303,13 +303,13 @@ class RegisterFragment : Fragment() {
                 id = null,
                 nombres,
                 apellidos,
-                address,
+                direccion,
                 email,
                 password,
-                tipoDocumentoSeleccionado,
+                tipoDocumento,
                 numeroDocumento,
                 sexo,
-                phone
+                telefono
             )
 
             registerClienteModel.createCliente(createCliente)

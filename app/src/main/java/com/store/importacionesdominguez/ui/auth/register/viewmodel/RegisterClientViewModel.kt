@@ -50,6 +50,11 @@ class RegisterClientViewModel
                     println("Cliente creado: $cliente")
                 }
 
+                is Result.Loading -> {
+                    _registroExitoso.value = false
+                    println("Cargando...")
+                }
+
                 is Result.Error -> {
                     _registroExitoso.value = false
                     println("Error: ${result.message}")

@@ -45,7 +45,7 @@
     <string name="txt_tilAddress">Ingresa tu dirección</string>
     <string name="txt_lbl_phone">Celular</string>
     <string name="txt_tilPhone">Ingresa tu número de celular</string>
-    <string name="txt_terms_privacy">Aceptop los término y condiciones de Importaciones Dominguez y autorizo la politica de privacidad.</string>
+    <string name="txt_terms_privacy">Acepto los término y condiciones de Importaciones Dominguez y autorizo la politica de privacidad.</string>
     <string name="txt_register">Regístrate</string>
     <string name="txt_button_cart">Agregar</string>
     <string name="txt_ic_hamburger">menu_hamburger</string>

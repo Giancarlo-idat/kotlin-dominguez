@@ -1,22 +1,28 @@
 package com.store.importacionesdominguez.ui.product.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.android.material.tabs.TabLayout
 import com.store.importacionesdominguez.R
-import com.store.importacionesdominguez.data.providers.ProductsProvider
 import com.store.importacionesdominguez.databinding.FragmentProductDetailBinding
+import com.store.importacionesdominguez.ui.product.viewmodel.ProductsViewModel
 import com.store.importacionesdominguez.ui.product.viewmodel.adapter.FragmentPageAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.math.RoundingMode
 
-
+@AndroidEntryPoint
 class ProductDetailFragment : Fragment() {
 
     private var _binding: FragmentProductDetailBinding? = null
@@ -26,10 +32,11 @@ class ProductDetailFragment : Fragment() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager2: ViewPager2
     private lateinit var adapter: FragmentPageAdapter
+    private val viewModelProducts: ProductsViewModel by viewModels()
+
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
         return binding.root
@@ -40,6 +47,7 @@ class ProductDetailFragment : Fragment() {
         initVariables()
         setupTab()
         displayProducts()
+        onBackPressed()
     }
 
     private fun initVariables() {
@@ -75,29 +83,88 @@ class ProductDetailFragment : Fragment() {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun displayProducts() {
+
         val productId = args.productId
-        val products = ProductsProvider.getProductById(productId)
-        products?.let { product ->
-            binding.txtTitleModel.text = product.modelo
-            binding.txtTitleBrandModel.text = product.marca
-            Glide.with(requireContext()).load(product.imagen).into(binding.imgProduct)
-            binding.txtPrice.text = "S/. " + product.precio.setScale(2, RoundingMode.HALF_EVEN).toString()
 
-            if (childFragmentManager.findFragmentByTag("DescriptionFragment") == null) {
-                val descriptionFragment = ProductDescriptionFragment()
+        // Obtener el producto de forma asíncrona
+        viewModelProducts.getProductById(productId)
 
-                val bundle = Bundle()
-                bundle.putString("description", product.descripcion)
-                descriptionFragment.arguments = bundle
+        // Observar el flujo del producto y actualizar la UI cuando se obtenga
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModelProducts.product.collect { productResponse ->
+                if (productResponse.isSuccessful) {
+                    val productResponseBody = productResponse.body()
+                    println("Product Detail: $productResponseBody")
+                    productResponseBody?.let { product ->
+                        // Actualizar la UI con los detalles del producto
+                        binding.txtTitleModel.text = product.modelo
+                        binding.txtTitleBrandModel.text = product.marca
+                        Glide.with(requireContext()).load(product.imagen).into(binding.imgProduct)
+                        binding.txtPrice.text =
+                            "S/. " + product.precio.setScale(2, RoundingMode.HALF_EVEN).toString()
+                        println("Description: ${product.descripcion}")
 
-                childFragmentManager.beginTransaction()
-                    .add(R.id.descriptionContainer, descriptionFragment, "DescriptionFragment")
-                    .commit()
+                        // Verificar si la descripción del producto no está vacía
+                        val descriptionContainer = binding.descriptionContainer
+                        val technicalSheetContainer = binding.technicalSheetContainer
+
+                        if (product.descripcion.isNotEmpty()) {
+                            // Mostrar fragmento de descripción
+                            descriptionContainer.visibility = View.VISIBLE
+                            technicalSheetContainer.visibility = View.GONE
+
+                            if (childFragmentManager.findFragmentByTag("DescriptionFragment") == null) {
+                                val descriptionFragment = ProductDescriptionFragment()
+                                val bundle = Bundle()
+                                bundle.putString("description", product.descripcion)
+                                descriptionFragment.arguments = bundle
+
+                                childFragmentManager.beginTransaction().add(
+                                    R.id.descriptionContainer,
+                                    descriptionFragment,
+                                    "DescriptionFragment"
+                                ).commit()
+                            }
+                        } else if (product.fichaTecnica.isNotEmpty()) {
+                            // Mostrar fragmento de ficha técnica
+                            descriptionContainer.visibility = View.GONE
+                            technicalSheetContainer.visibility = View.VISIBLE
+
+                            if (childFragmentManager.findFragmentByTag("TechnicalSheetFragment") == null) {
+                                val technicalSheetFragment = ProductSpecificationsFragment()
+                                val jsonFichaTecnica =
+                                    ObjectMapper().writeValueAsString(product.fichaTecnica)
+
+                                val bundle = Bundle()
+                                bundle.putString("technicalSheet", jsonFichaTecnica)
+                                technicalSheetFragment.arguments = bundle
+
+                                childFragmentManager.beginTransaction().add(
+                                    R.id.technicalSheetContainer,
+                                    technicalSheetFragment,
+                                    "TechnicalSheetFragment"
+                                ).commit()
+                            }
+                        }
+
+
+                    }
+                } else {
+                    // Manejar el caso en que no se pueda obtener el producto
+                    val errorMessage = productResponse.errorBody()?.toString()
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
 
+    private fun onBackPressed() {
+        binding.imgBack.setOnClickListener {
+            activity?.onBackPressed()
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
