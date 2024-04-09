@@ -15,9 +15,13 @@ import com.bumptech.glide.Glide
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.android.material.tabs.TabLayout
 import com.store.importacionesdominguez.R
+import com.store.importacionesdominguez.data.model.FavoritesModel
+import com.store.importacionesdominguez.data.model.ShoppingCartModel
 import com.store.importacionesdominguez.databinding.FragmentProductDetailBinding
 import com.store.importacionesdominguez.ui.product.viewmodel.ProductsViewModel
 import com.store.importacionesdominguez.ui.product.viewmodel.adapter.FragmentPageAdapter
+import com.store.importacionesdominguez.utils.preferences.CartManager
+import com.store.importacionesdominguez.utils.preferences.FavoritesManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.math.RoundingMode
@@ -106,6 +110,37 @@ class ProductDetailFragment : Fragment() {
                             "S/. " + product.precio.setScale(2, RoundingMode.HALF_EVEN).toString()
                         println("Description: ${product.descripcion}")
 
+
+                        // Crear un nuevo objeto ShoppingCartModel con los datos del producto
+                        val shoppingCartProduct = ShoppingCartModel(
+                            id = productId,
+                            modelo = product.modelo,
+                            marca = product.marca,
+                            precio = product.precio,
+                            cantidad = 1,
+                            products = product,
+                            imagen = product.imagen
+                        )
+
+                        val favoritesProduct = FavoritesModel(
+                            id = productId,
+                            modelo = product.modelo,
+                            marca = product.marca,
+                            cantidad = 1,
+                            precio = product.precio,
+                            products = product,
+                            imagen = product.imagen
+                        )
+
+                        //Agregar al carrito
+                        binding.llAddToCart.setOnClickListener {
+                            addToCart(shoppingCartProduct)
+                        }
+
+                        binding.btnfavorites.setOnClickListener {
+                            addFavorites(favoritesProduct)
+                        }
+
                         // Verificar si la descripción del producto no está vacía
                         val descriptionContainer = binding.descriptionContainer
                         val technicalSheetContainer = binding.technicalSheetContainer
@@ -158,6 +193,27 @@ class ProductDetailFragment : Fragment() {
                 }
             }
         }
+    }
+
+
+    private fun addToCart(product: ShoppingCartModel) {
+        val context = requireContext()
+        CartManager.addProduct(context, product)
+        Toast.makeText(context, "Producto añadido al carrito", Toast.LENGTH_SHORT).show()
+    }
+
+
+    private fun addFavorites(product: FavoritesModel) {
+        val context = requireContext()
+        // Si el producto ya fue guardado en favoritos, mostrar un mensaje de error
+        if (FavoritesManager.getFavorites(context).contains(product)) {
+            Toast.makeText(context, "El producto ya fue añadido a favoritos", Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            FavoritesManager.addFavorite(context, product)
+            Toast.makeText(context, "Producto añadido a favoritos", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun onBackPressed() {

@@ -25,6 +25,12 @@ class ProductsRepository @Inject constructor(private val productsService: Produc
         }
     }
 
+    suspend fun getProductByModel(model: String) = productsService.getProductsByModel(model)
+
+    suspend fun getProductByBrand(brand: String) = productsService.getProductsByBrand(brand)
+
+    suspend fun getProductByCategory(category: String) = productsService.getProductsByCategory(category)
+
     suspend fun updateProduct(product: ProductModel, id: String) =
         productsService.updateProduct(product, id)
 

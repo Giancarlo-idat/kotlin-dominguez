@@ -68,5 +68,10 @@
     <string name="txt_lbl_numero_documento">N° Documento</string>
     <string name="txt_tilNumeroDocumento">Ingresa tu número documento</string>
     <string name="txt_errornumero_documento_label">El número de documento no puede ser vacio</string>
-    <string name="txt_title_checkout_cart">Shopping Bag</string>
+    <string name="txt_title_checkout_cart">Carrito de compras</string>
+    <string name="txt_name_categories">Name Categories</string>
+    <string name="txt_productos_favoritos">Productos Favoritos</string>
+    <string name="marca_del_producto">Marca del producto</string>
+    <string name="txt_favorite_precio">Precio:</string>
+    <string name="txt_max_quantity">Máximo 10 unidades</string>
 </resources>

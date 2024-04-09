@@ -3,20 +3,25 @@ package com.store.importacionesdominguez.ui.home.view
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.store.importacionesdominguez.R
 import com.store.importacionesdominguez.databinding.FragmentHomeBinding
+import com.store.importacionesdominguez.ui.categories.adapter.CategoriesAdapter
+import com.store.importacionesdominguez.ui.categories.viewmodel.CategoriesViewModel
 import com.store.importacionesdominguez.ui.home.adapter.BannerAdapter
 import com.store.importacionesdominguez.ui.product.viewmodel.ProductsViewModel
 import com.store.importacionesdominguez.ui.product.viewmodel.adapter.ProductsAdapter
@@ -36,8 +41,13 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: BannerAdapter
 
     private val viewModelProducts: ProductsViewModel by viewModels()
-    private val productsAdapter = ProductsAdapter { productId ->
+    private var productsAdapter = ProductsAdapter { productId ->
         navigateToProductDetail(productId)
+    }
+    private val viewModelCategories: CategoriesViewModel by viewModels()
+    private var categoriesAdapter = CategoriesAdapter { categoryId ->
+        // Navegar a la pantalla de productos
+        navigateCategoryDetail(categoryId)
     }
 
     override fun onCreateView(
@@ -64,7 +74,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fetchProducts()
+        getProducts()
+        getCategories()
+        setupSearchTextWatcher()
+        getProductsByCategory()
     }
 
     private fun initViewPager2() {
@@ -104,6 +117,11 @@ class HomeFragment : Fragment() {
         val recyclerView = binding.recyclerViewProducts
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = productsAdapter
+
+        val recyclerViewCategories = binding.recyclerViewCategories
+        recyclerViewCategories.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewCategories.adapter = categoriesAdapter
     }
 
     private fun navigateToProductDetail(productId: String) {
@@ -114,7 +132,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun fetchProducts() {
+    private fun getProducts() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModelProducts.productos.collect { productListResponse ->
                 if (productListResponse.isSuccessful) {
@@ -134,6 +152,74 @@ class HomeFragment : Fragment() {
 
     private fun fetchProductById(productId: String) {
         viewModelProducts.getProductById(productId)
+    }
+
+    private fun navigateCategoryDetail(categoryId: String) {
+        val category = fetchCategoryById(categoryId)
+        category.let {
+            // Navegar a la pantalla de detalle de categoría
+        }
+    }
+
+    private fun getCategories() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModelCategories.categories.collect { categoriesResponse ->
+                if (categoriesResponse.isSuccessful) {
+                    val categoriesList = categoriesResponse.body()
+                    categoriesList?.let {
+                        categoriesAdapter.setData(it)
+                    }
+                } else {
+                    categoriesResponse.errorBody()?.let {
+                        // Manejar error
+                        val errorMessage = categoriesResponse.errorBody().toString()
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+        viewModelCategories.getCategories()
+    }
+
+    private fun fetchCategoryById(productId: String) {
+        viewModelCategories.getCategoryById(productId)
+    }
+
+    private fun setupSearchTextWatcher() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.searchView.clearFocus() // Esto quita el foco del SearchView
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Aquí puedes realizar alguna acción cuando el texto de búsqueda cambia
+                if (newText != null) {
+                    if (newText.isEmpty()) {
+                        getProducts()
+                    } else {
+                        viewModelProducts.getProductsByModel(newText)
+                    }
+                }
+                return true
+            }
+        })
+
+    }
+
+    private fun getProductsByCategory() {
+        val onClickListener: (String) -> Unit = { categoryId ->
+            viewModelProducts.getProductsByCategory(categoryId)
+        }
+        categoriesAdapter = CategoriesAdapter(onClickListener)
+        binding.recyclerViewCategories.adapter = categoriesAdapter
+        Log.d("HomeFragment", "getProductsByCategory $categoriesAdapter")
+
+
+        binding.tvCategories.setOnClickListener {
+            viewModelProducts.getProducts()
+        }
+
     }
 
 

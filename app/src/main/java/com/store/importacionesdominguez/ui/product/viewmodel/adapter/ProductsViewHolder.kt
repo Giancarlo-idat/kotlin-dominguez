@@ -1,4 +1,4 @@
-package com.store.importacionesdominguez.ui.product.viewmodel
+package com.store.importacionesdominguez.ui.product.viewmodel.adapter
 
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView

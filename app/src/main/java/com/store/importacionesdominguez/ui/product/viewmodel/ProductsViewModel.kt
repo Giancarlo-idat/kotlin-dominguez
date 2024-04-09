@@ -19,7 +19,7 @@ class ProductsViewModel @Inject constructor(
     private val productsRepository: ProductsRepository
 ) : ViewModel() {
 
-    val map = HashMap<String, String>()
+    private val map = HashMap<String, String>()
 
     private val _productos =
         MutableStateFlow<Response<List<ProductModel>>>(Response.success(emptyList()))
@@ -65,4 +65,40 @@ class ProductsViewModel @Inject constructor(
         }
     }
 
+
+    fun getProductsByModel(model: String) {
+        viewModelScope.launch {
+            try {
+                val productsListResponse = productsRepository.getProductByModel(model)
+                println("ProductList:  $productsListResponse")
+                _productos.value = productsListResponse
+            } catch (e: Exception) {
+                Result.Error(e.message.toString())
+            }
+        }
+    }
+
+    fun getProductsByBrand(brand: String) {
+        viewModelScope.launch {
+            try {
+                val productsListResponse = productsRepository.getProductByBrand(brand)
+                println("ProductList:  $productsListResponse")
+                _productos.value = productsListResponse
+            } catch (e: Exception) {
+                Result.Error(e.message.toString())
+            }
+        }
+    }
+
+    fun getProductsByCategory(category: String) {
+        viewModelScope.launch {
+            try {
+                val productsListResponse = productsRepository.getProductByCategory(category)
+                println("ProductList:  $productsListResponse")
+                _productos.value = productsListResponse
+            } catch (e: Exception) {
+                Result.Error(e.message.toString())
+            }
+        }
+    }
 }

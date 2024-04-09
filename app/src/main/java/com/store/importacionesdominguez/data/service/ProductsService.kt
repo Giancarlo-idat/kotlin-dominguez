@@ -15,6 +15,15 @@ interface ProductsService {
     @GET("productos/inactivos")
     suspend fun getInactiveProducts(): Response<List<ProductModel>>
 
+    @GET("productos/modelo")
+    suspend fun getProductsByModel(@Query("modelo") modelo: String): Response<List<ProductModel>>
+
+    @GET("productos/marca")
+    suspend fun getProductsByBrand(@Query("marca") marca: String): Response<List<ProductModel>>
+
+    @GET("productos/categoria")
+    suspend fun getProductsByCategory(@Query("categoria") categoria: String): Response<List<ProductModel>>
+
     @GET("productos/{id}")
     suspend fun getProduct(@Path("id") id: String): Response<ProductModel>
 
