@@ -2,10 +2,15 @@ package com.store.importacionesdominguez.di
 
 import com.store.importacionesdominguez.data.service.AuthService
 import com.store.importacionesdominguez.data.service.CategoriesService
+import com.store.importacionesdominguez.data.service.CheckoutService
 import com.store.importacionesdominguez.data.service.ClienteService
+import com.store.importacionesdominguez.data.service.DocVentaService
+import com.store.importacionesdominguez.data.service.PaymentService
 import com.store.importacionesdominguez.data.service.ProductsService
+import com.store.importacionesdominguez.data.service.ProfileService
 import com.store.importacionesdominguez.data.service.RolService
 import com.store.importacionesdominguez.data.service.TipoDocumentoIdentidadService
+import com.store.importacionesdominguez.data.service.TipoTransaccionService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -53,4 +58,33 @@ object ServiceModule {
         return retrofit.create(ProductsService::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideDocVentaService(retrofit: Retrofit): DocVentaService {
+        return retrofit.create(DocVentaService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTipoTransaccionService(retrofit: Retrofit): TipoTransaccionService {
+        return retrofit.create(TipoTransaccionService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCheckOutService(retrofit: Retrofit): CheckoutService {
+        return retrofit.create(CheckoutService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileService(retrofit: Retrofit): ProfileService {
+        return retrofit.create(ProfileService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providePaymentService(retrofit: Retrofit): PaymentService {
+        return retrofit.create(PaymentService::class.java)
+    }
 }

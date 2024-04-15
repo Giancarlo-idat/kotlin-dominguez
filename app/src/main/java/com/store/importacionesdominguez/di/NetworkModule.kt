@@ -1,10 +1,13 @@
 package com.store.importacionesdominguez.di
 
 import android.content.Context
+import android.util.Log
+import com.store.importacionesdominguez.utils.preferences.CartManager
 import com.store.importacionesdominguez.utils.preferences.SharedPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -52,4 +55,5 @@ object NetworkModule {
             } ?: chain.proceed(chain.request())
         }
     }
+
 }

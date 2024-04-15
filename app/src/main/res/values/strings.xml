@@ -74,4 +74,18 @@
     <string name="marca_del_producto">Marca del producto</string>
     <string name="txt_favorite_precio">Precio:</string>
     <string name="txt_max_quantity">Máximo 10 unidades</string>
+    <string name="txt_number_counter_cart">1</string>
+    <string name="txt_checkout">Continuar compra</string>
+    <string name="txt_label_envio">Envio</string>
+    <string name="txt_label_cantidad_productos">Cantidad Productos</string>
+    <string name="txt_lbl_subtotal">Sub total</string>
+    <string name="txt_lbl_total">Total: </string>
+    <string name="txt_tipo_y_dia_de_entrega">Tipo y día de entrega</string>
+    <string name="txt_envio_domicilio">Envío a domicilio</string>
+    <string name="txt_cambiar_fecha">Cambiar Fecha</string>
+    <string name="txt_costo_envio">Costo de envío: </string>
+    <string name="txt_payment">Ir a pagar</string>
+    <string name="txt_checkout_title">Elige el tipo y fecha de entrega</string>
+    <string name="txt_horario">De 8 a 20h</string>
+    <string name="txt_lbl_subTotal">"Sub Total: "</string>
 </resources>

@@ -25,6 +25,7 @@ import com.store.importacionesdominguez.ui.categories.viewmodel.CategoriesViewMo
 import com.store.importacionesdominguez.ui.home.adapter.BannerAdapter
 import com.store.importacionesdominguez.ui.product.viewmodel.ProductsViewModel
 import com.store.importacionesdominguez.ui.product.viewmodel.adapter.ProductsAdapter
+import com.store.importacionesdominguez.utils.preferences.CartManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 import kotlinx.coroutines.launch

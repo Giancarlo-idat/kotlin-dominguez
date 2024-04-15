@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.store.importacionesdominguez"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -87,6 +87,11 @@ dependencies {
     // App Compat
     implementation ("androidx.appcompat:appcompat:1.2.0")
 
+    implementation ("com.jakewharton.threetenabp:threetenabp:1.2.4")
+
+    implementation ("com.stripe:stripe-android:20.40.3")
+
+    implementation("com.stripe:stripe-java:23.0.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.store.importacionesdominguez.R
 import com.store.importacionesdominguez.data.model.FavoritesModel
 import com.store.importacionesdominguez.databinding.FragmentFavoritesBinding
 import com.store.importacionesdominguez.ui.favorites.adapter.FavoritesAdapter

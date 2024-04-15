@@ -1,5 +1,6 @@
 package com.store.importacionesdominguez.ui.cart.adapter
 
+import android.annotation.SuppressLint
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -11,6 +12,7 @@ class ShoppingCartViewHolder(
     private val binding: ItemsShoppingCartBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
+    @SuppressLint("SetTextI18n")
     fun bind(
         item: ShoppingCartModel,
         onDeleteClickListener: (ShoppingCartModel) -> Unit,
@@ -20,7 +22,7 @@ class ShoppingCartViewHolder(
         binding.apply{
             binding.tvProductName.text = item.modelo
             binding.tvMarca.text = item.marca
-            binding.tvPrice.text = item.precio.toString()
+            binding.tvPrice.text = String.format("S/. %.2f", item.precio)
             binding.tvQuantity.text = item.cantidad.toString()
             loadProductImage(item.imagen, binding.ivProductImage)
 

@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.store.importacionesdominguez.data.model.ProductModel
 import com.store.importacionesdominguez.databinding.ItemProductsBinding
+import com.store.importacionesdominguez.utils.preferences.CartManager
 
 class ProductsAdapter(
-    private val onClickListener: (String) -> Unit
+    private val onClickListener: (String) -> Unit,
 ) : RecyclerView.Adapter<ProductsViewHolder>() {
 
     private var productsList: MutableList<ProductModel> = mutableListOf()

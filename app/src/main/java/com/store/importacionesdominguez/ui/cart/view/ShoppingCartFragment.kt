@@ -2,10 +2,12 @@ package com.store.importacionesdominguez.ui.cart.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.store.importacionesdominguez.data.model.ShoppingCartModel
 import com.store.importacionesdominguez.databinding.FragmentCartBinding
@@ -34,6 +36,8 @@ class ShoppingCartFragment : Fragment() {
 
         adapter()
         getDetailsOrder()
+        navigateFragments()
+
     }
 
     private fun adapter() {
@@ -71,6 +75,7 @@ class ShoppingCartFragment : Fragment() {
         CartManager.decrementProduct(requireContext(), item)
         refreshCart()
         getDetailsOrder()
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -90,15 +95,29 @@ class ShoppingCartFragment : Fragment() {
         val total = subtotal + shippingCost
 
         // Actualizar los TextView con los valores calculados
-        binding.tvProductsValue.text = "$totalProducts productos"
-        binding.tvSubTotalValue.text = String.format("S/. %.2f", subtotal)
-        binding.tvEnvioValue.text = String.format("S/. %.2f", shippingCost)
-        binding.tvTotalValue.text = String.format("S/. %.2f", total)
+        binding.tvProductsValue.text = "Carrito ($totalProducts productos)"
+        /* binding.tvSubTotalValue.text = String.format("S/. %.2f", subtotal)
+         binding.tvEnvioValue.text = String.format("S/. %.2f", shippingCost)*/
+        binding.tvTotalValue.text = String.format("S/. %.2f", subtotal)
+    }
+
+    private fun navigateFragments() {
+        navigateToCheckout()
     }
 
     private fun refreshCart() {
         val updatedCartItems = CartManager.getCart(requireContext())
         shoppingCartAdapter.updateCartItems(updatedCartItems)
+    }
+
+    // Navegar hacia el checkout
+    private fun navigateToCheckout() {
+        Log.d("Navegar hacia el checkout", "Navegar hacia el checkout")
+        // Lógica para navegar hacia el checkout
+        binding.btnCheckout.setOnClickListener {
+            val action = ShoppingCartFragmentDirections.actionCartFragmentToCheckoutFragment()
+            findNavController().navigate(action)
+        }
     }
 
 

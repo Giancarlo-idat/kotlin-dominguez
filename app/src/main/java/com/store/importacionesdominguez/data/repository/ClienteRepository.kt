@@ -11,7 +11,7 @@ class ClienteRepository @Inject constructor(private val clienteService: ClienteS
 
     suspend fun getClienteById(id: String) = clienteService.getCliente(id)
 
-    suspend fun createCliente(cliente: ClienteModel) :Result<ClienteModel> {
+    suspend fun createCliente(cliente: ClienteModel) : Result<ClienteModel> {
         val response = clienteService.createCliente(cliente)
         println("Cliente: $cliente")
         println(response)

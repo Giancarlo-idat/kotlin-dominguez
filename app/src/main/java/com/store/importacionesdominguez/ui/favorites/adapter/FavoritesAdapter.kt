@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.store.importacionesdominguez.data.model.FavoritesModel
 import com.store.importacionesdominguez.databinding.ItemsFavoriteBinding
+import com.store.importacionesdominguez.utils.preferences.CartManager
 
-class FavoritesAdapter (
+class FavoritesAdapter(
     private var favoriteItems: List<FavoritesModel>,
     private val onDeleteClickListener: (FavoritesModel) -> Unit,
-    private val onClickListener: (String) -> Unit
-):RecyclerView.Adapter<FavoritesViewHolder>(){
+    private val onClickListener: (String) -> Unit,
+) : RecyclerView.Adapter<FavoritesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -18,7 +19,7 @@ class FavoritesAdapter (
         return FavoritesViewHolder(binding)
     }
 
-    fun updateFavoriteItems(newFavoriteItems: MutableList<FavoritesModel>){
+    fun updateFavoriteItems(newFavoriteItems: MutableList<FavoritesModel>) {
         favoriteItems = newFavoriteItems
         notifyDataSetChanged()
     }
