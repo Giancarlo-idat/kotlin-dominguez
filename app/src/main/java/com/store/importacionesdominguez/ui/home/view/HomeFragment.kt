@@ -25,7 +25,7 @@ import com.store.importacionesdominguez.ui.categories.viewmodel.CategoriesViewMo
 import com.store.importacionesdominguez.ui.home.adapter.BannerAdapter
 import com.store.importacionesdominguez.ui.product.viewmodel.ProductsViewModel
 import com.store.importacionesdominguez.ui.product.viewmodel.adapter.ProductsAdapter
-import com.store.importacionesdominguez.utils.preferences.CartManager
+import com.store.importacionesdominguez.ui.reports.ReportsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 import kotlinx.coroutines.launch
@@ -50,6 +50,8 @@ class HomeFragment : Fragment() {
         // Navegar a la pantalla de productos
         navigateCategoryDetail(categoryId)
     }
+
+    private val reportes: ReportsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -79,6 +81,7 @@ class HomeFragment : Fragment() {
         getCategories()
         setupSearchTextWatcher()
         getProductsByCategory()
+        generateReportes()
     }
 
     private fun initViewPager2() {
@@ -133,6 +136,12 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun generateReportes() {
+        binding.reports.setOnClickListener {
+            reportes.downloadReportsExcel()
+        }
+    }
+
     private fun getProducts() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModelProducts.productos.collect { productListResponse ->
@@ -146,6 +155,8 @@ class HomeFragment : Fragment() {
                     // Manejar el error
                     Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                 }
+
+                binding.progressBar.visibility = View.GONE
             }
         }
         viewModelProducts.getProducts()

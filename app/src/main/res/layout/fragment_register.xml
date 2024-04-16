@@ -506,12 +506,6 @@
                     android:layout_weight="1"
                     android:text="@string/txt_terms_privacy" />
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/chkTermsPrivacy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp" />
-
             </LinearLayout>
 
             <Button

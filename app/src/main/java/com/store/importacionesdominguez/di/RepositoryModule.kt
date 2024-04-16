@@ -8,6 +8,7 @@ import com.store.importacionesdominguez.data.repository.LoginRepository
 import com.store.importacionesdominguez.data.repository.PaymentRepository
 import com.store.importacionesdominguez.data.repository.ProductsRepository
 import com.store.importacionesdominguez.data.repository.ProfileRepository
+import com.store.importacionesdominguez.data.repository.ReportesRepository
 import com.store.importacionesdominguez.data.repository.RolRepository
 import com.store.importacionesdominguez.data.repository.TipoDocumentoIdentidadRepository
 import com.store.importacionesdominguez.data.repository.TipoTransaccionRepository
@@ -19,6 +20,7 @@ import com.store.importacionesdominguez.data.service.DocVentaService
 import com.store.importacionesdominguez.data.service.PaymentService
 import com.store.importacionesdominguez.data.service.ProductsService
 import com.store.importacionesdominguez.data.service.ProfileService
+import com.store.importacionesdominguez.data.service.ReportesService
 import com.store.importacionesdominguez.data.service.RolService
 import com.store.importacionesdominguez.data.service.TipoDocumentoIdentidadService
 import com.store.importacionesdominguez.data.service.TipoTransaccionService
@@ -98,6 +100,12 @@ object RepositoryModule {
     @Singleton
     fun providePaymentRepository(paymentService: PaymentService): PaymentRepository {
         return PaymentRepository(paymentService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideReportesRepository(reportesServices: ReportesService): ReportesRepository {
+        return ReportesRepository(reportesServices)
     }
 
 }

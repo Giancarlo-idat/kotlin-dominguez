@@ -98,8 +98,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -108,15 +108,15 @@
 
                     <TextView
                         android:id="@+id/tvCategories"
-                        android:gravity="end"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
-                        android:layout_marginEnd="@dimen/dimen_margin_medium"
-                        android:textColor="@color/primary"
-                        android:textStyle="bold"
                         android:layout_marginVertical="@dimen/dimen_margin_small"
-                        android:text="Ver todos" />
+                        android:layout_marginEnd="@dimen/dimen_margin_medium"
+                        android:gravity="end"
+                        android:text="Ver todos"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -127,16 +127,23 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/viewPager2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/viewPager2" />
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@+id/viewPager2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/viewPager2" />
+            </LinearLayout>
 
             <!-- Layout de Productos -->
             <LinearLayout
@@ -151,7 +158,21 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/reports"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Reportes"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
         </LinearLayout>
+
+
+
+
     </androidx.core.widget.NestedScrollView>
 
 

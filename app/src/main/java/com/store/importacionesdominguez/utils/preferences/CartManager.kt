@@ -11,6 +11,7 @@ object CartManager {
     private const val CART_KEY = "CART"
     private const val MY_CART = "MY_CART"
 
+    /* Recupera los datos del carrito compras */
     fun getCart(context: Context): MutableList<ShoppingCartModel> {
         val sharedPreferences = context.getSharedPreferences(MY_CART, Context.MODE_PRIVATE)
         val cartJson = sharedPreferences.getString(CART_KEY, "[]")
@@ -21,6 +22,8 @@ object CartManager {
             ?: mutableListOf()
     }
 
+
+    /* Guarda los productos en el carrito en SharedPreferences */
     fun saveCart(context: Context, cart: List<ShoppingCartModel>) {
         val cartJson = Gson().toJson(cart)
         context.getSharedPreferences(MY_CART, Context.MODE_PRIVATE)
@@ -29,6 +32,7 @@ object CartManager {
             .apply()
     }
 
+    /*Limpiar el carrito*/
     fun clearCart(context: Context) {
         context.getSharedPreferences(MY_CART, Context.MODE_PRIVATE)
             .edit()
@@ -36,6 +40,8 @@ object CartManager {
             .apply()
     }
 
+
+    /* Agrega un nuevo producto al carrito de compras */
     fun addProduct(context: Context, item: ShoppingCartModel) {
         val cartItems = getCart(context).toMutableList()
         val existingItem = cartItems.find { it.id == item.id }
@@ -54,6 +60,7 @@ object CartManager {
         saveCart(context, cartItems)
     }
 
+    /* Disminiye un producto en el carrito*/
     fun decrementProduct(context: Context, item: ShoppingCartModel) {
         val cartItems = getCart(context).toMutableList()
         val existingItem = cartItems.find { it.id == item.id }
@@ -72,6 +79,8 @@ object CartManager {
         saveCart(context, cartItems)
     }
 
+
+    /* Elimina un producto */
     fun deleteProductCart(context: Context, item: ShoppingCartModel) {
         val cartItems = getCart(context).toMutableList()
         val existingItem = cartItems.find { it.id == item.id }

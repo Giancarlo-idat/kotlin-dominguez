@@ -8,6 +8,7 @@ import com.store.importacionesdominguez.data.service.DocVentaService
 import com.store.importacionesdominguez.data.service.PaymentService
 import com.store.importacionesdominguez.data.service.ProductsService
 import com.store.importacionesdominguez.data.service.ProfileService
+import com.store.importacionesdominguez.data.service.ReportesService
 import com.store.importacionesdominguez.data.service.RolService
 import com.store.importacionesdominguez.data.service.TipoDocumentoIdentidadService
 import com.store.importacionesdominguez.data.service.TipoTransaccionService
@@ -86,5 +87,11 @@ object ServiceModule {
     @Singleton
     fun providePaymentService(retrofit: Retrofit): PaymentService {
         return retrofit.create(PaymentService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideReportesService(retrofit: Retrofit) : ReportesService {
+        return retrofit.create(ReportesService::class.java)
     }
 }
